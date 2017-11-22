@@ -7,18 +7,25 @@ package alerta;
 
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
+import view.Tela;
 
 class Alerta extends TimerTask {
     
     String descricao;
-
+    int index;
+    Tela tela;
+    
     @Override
     public void run() {
         JOptionPane.showMessageDialog(null, descricao);
-        this.cancel(); // E
+        tela.deletarLinha(index);
+        this.cancel();
+        
     }
 
-    public Alerta(String descricao) {
+    public Alerta(String descricao, int index, Tela tela) {
         this.descricao = descricao;
+        this.index = index;
+        this.tela = tela;
     }
 }

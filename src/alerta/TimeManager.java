@@ -1,28 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package alerta;
 
 import java.util.Timer;
+import view.Tela;
 
-/**
- *
- * @author hidan
- */
+
 public class TimeManager {
 
     Timer timer;
     Alerta alerta;
-
-    public TimeManager() {
-    }
+    Tela tela;
+    
  
-    public TimeManager(long seconds, String descricao) {
-        alerta = new Alerta(descricao);
+    public TimeManager(Tela tela, long seconds, String descricao, int index) {
+        alerta = new Alerta(descricao, index, tela);
         timer = new Timer();
         timer.schedule(alerta, seconds * 1000);
+        
+        
         
     }
 

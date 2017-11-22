@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -183,7 +184,7 @@ public class Tela extends javax.swing.JFrame {
         long tempo = Integer.parseInt(segundo.getText())
                 + Integer.parseInt(minuto.getText()) * 60
                 + Integer.parseInt(hora.getText()) * 60 * 60;
-        TimeManager timer = new TimeManager(tempo, descricao.getText());
+        TimeManager timer = new TimeManager(this, tempo, descricao.getText(), contador);
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
@@ -192,9 +193,9 @@ public class Tela extends javax.swing.JFrame {
         Date data = cal.getTime();
         jTable2.getModel().setValueAt(sdf.format(data.getTime()), contador, 1);
 
-        data.setHours(data.getHours()+Integer.parseInt(hora.getText()));
-        data.setMinutes(data.getMinutes()+Integer.parseInt(minuto.getText()));
-        data.setSeconds(data.getSeconds()+Integer.parseInt(segundo.getText()));
+        data.setHours(data.getHours() + Integer.parseInt(hora.getText()));
+        data.setMinutes(data.getMinutes() + Integer.parseInt(minuto.getText()));
+        data.setSeconds(data.getSeconds() + Integer.parseInt(segundo.getText()));
         jTable2.getModel().setValueAt(sdf.format(data.getTime()), contador, 2);
         contador++;
         JButton botao = new JButton();
@@ -235,6 +236,14 @@ public class Tela extends javax.swing.JFrame {
                 new Tela().setVisible(true);
             }
         });
+    }
+
+    public void deletarLinha(int index) {
+
+        ((DefaultTableModel) jTable2.getModel()).removeRow(index);
+        // jTable2.getModel().addRow(new Object[]{null,null,null,null});
+        // Adicionar linhas depois 
+        contador--;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
