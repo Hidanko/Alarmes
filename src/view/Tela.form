@@ -198,6 +198,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Push"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoPuxarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

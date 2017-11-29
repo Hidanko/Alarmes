@@ -7,6 +7,7 @@ package view;
 
 import alerta.TimeManager;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import servidor.AlarmCliente;
+import servidor.ServerData;
 
 /**
  *
@@ -23,6 +25,7 @@ public class Tela extends javax.swing.JFrame {
 
     int contador = 0;
     AlarmCliente cliente;
+
     /**
      * Creates new form Tela
      */
@@ -149,6 +152,11 @@ public class Tela extends javax.swing.JFrame {
         });
 
         botaoPuxar.setText("Push");
+        botaoPuxar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPuxarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -204,7 +212,8 @@ public class Tela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAdicionarTempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarTempoActionPerformed
-        // Criar classe para controlar ArrayList de linhas da tabela
+        // Enviar valores para o método "adicionarTempo" em vez de adicionar aqui
+        // Para só ter que mexer em um lugar durante a manutenção do codigo
         long tempo = Integer.parseInt(segundo.getText())
                 + Integer.parseInt(minuto.getText()) * 60
                 + Integer.parseInt(hora.getText()) * 60 * 60;
@@ -228,10 +237,9 @@ public class Tela extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAdicionarTempoActionPerformed
 
     private void botaoConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConectarActionPerformed
-        
+
         // Botao para deixar o cliente Online
-        
-        if (cliente == null){
+        if (cliente == null) {
             try {
                 cliente = new AlarmCliente();
             } catch (Exception ex) {
@@ -240,6 +248,31 @@ public class Tela extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoConectarActionPerformed
 
+    private void botaoPuxarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPuxarActionPerformed
+        try {
+            ArrayList<ServerData> temp = (ArrayList<ServerData>) cliente.request();
+            System.out.println("Numero de valores recebidos:"+temp.size());
+            for (ServerData serverData : temp) {
+                adicionarTempo(serverData);
+                
+                
+                
+            }
+        } catch (Exception ex) {
+        }
+        
+    }//GEN-LAST:event_botaoPuxarActionPerformed
+    private void adicionarTempo(ServerData sd){
+                
+        TimeManager timer = new TimeManager(this, sd.getTempoFinal(), sd.getDescricao(), contador);
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        System.out.println(sdf.format(cal.getTime()));
+        jTable2.getModel().setValueAt(sd.getDescricao(), contador, 0);
+        jTable2.getModel().setValueAt(sdf.format(sd.getTempoAtual()), contador, 1);
+        jTable2.getModel().setValueAt(sdf.format(sd.getTempoFinal()), contador, 2);
+        contador++;
+    }
     /**
      * @param args the command line arguments
      */

@@ -7,6 +7,7 @@ package servidor;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Collection;
 import servidor.Alarm;
 
 public class AlarmCliente {
@@ -19,5 +20,9 @@ public class AlarmCliente {
         myReg = LocateRegistry.getRegistry("127.0.0.1", 1099);
         cliente = (AlarmInterface) myReg.lookup("TESTE");
         System.out.println("Cliente ONLINE");
+    }
+    
+    public Collection request () throws Exception{
+        return cliente.getDescricao();
     }
 }

@@ -111,7 +111,7 @@ public class viewServidor extends javax.swing.JFrame {
                 + Integer.parseInt(minuto.getText()) * 60
                 + Integer.parseInt(hora.getText()) * 60 * 60;
 
-        if (server.adicionarAlerta(tempo, descricaoTexto.getText()) == true){
+        if (server.adicionarAlerta(tempo, descricaoTexto.getText())){
             numBanco++;
             labelBanco.setText("Numero de Alertas no Servidor: "+numBanco);
         }
