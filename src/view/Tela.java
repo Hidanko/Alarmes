@@ -9,8 +9,11 @@ import alerta.TimeManager;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+import servidor.AlarmCliente;
 
 /**
  *
@@ -19,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class Tela extends javax.swing.JFrame {
 
     int contador = 0;
-
+    AlarmCliente cliente;
     /**
      * Creates new form Tela
      */
@@ -48,6 +51,8 @@ public class Tela extends javax.swing.JFrame {
         descricao = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        botaoConectar = new javax.swing.JButton();
+        botaoPuxar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -136,15 +141,34 @@ public class Tela extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
+        botaoConectar.setText("Conectar");
+        botaoConectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConectarActionPerformed(evt);
+            }
+        });
+
+        botaoPuxar.setText("Push");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botaoConectar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoPuxar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 278, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(botaoConectar)
+                .addGap(18, 18, 18)
+                .addComponent(botaoPuxar)
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.LINE_START);
@@ -203,6 +227,19 @@ public class Tela extends javax.swing.JFrame {
         //botao.addActionListener(al);
     }//GEN-LAST:event_buttonAdicionarTempoActionPerformed
 
+    private void botaoConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConectarActionPerformed
+        
+        // Botao para deixar o cliente Online
+        
+        if (cliente == null){
+            try {
+                cliente = new AlarmCliente();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_botaoConectarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -247,6 +284,8 @@ public class Tela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoConectar;
+    private javax.swing.JButton botaoPuxar;
     private javax.swing.JButton buttonAdicionarTempo;
     private javax.swing.JTextField descricao;
     private javax.swing.JTextField hora;
