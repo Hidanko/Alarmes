@@ -85,7 +85,7 @@ public class Tela extends javax.swing.JFrame {
         jLabel2.setText("Minuto:");
 
         jLabel3.setText("Segundo:");
-
+        this.botaoPuxar.setVisible(false);
         buttonAdicionarTempo.setText("Adicionar Timer");
         buttonAdicionarTempo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,7 +237,7 @@ public class Tela extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAdicionarTempoActionPerformed
 
     private void botaoConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConectarActionPerformed
-
+        this.botaoPuxar.setVisible(true);
         // Botao para deixar o cliente Online
         if (cliente == null) {
             try {
