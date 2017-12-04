@@ -10,17 +10,17 @@ import javax.swing.JOptionPane;
 import view.Tela;
 
 class Alerta extends TimerTask {
-    
+
     String descricao;
     int index;
     Tela tela;
-    
+
     @Override
     public void run() {
         JOptionPane.showMessageDialog(null, descricao);
         tela.deletarLinha(index);
         this.cancel();
-        
+
     }
 
     public Alerta(String descricao, int index, Tela tela) {

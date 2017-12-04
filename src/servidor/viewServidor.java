@@ -51,6 +51,7 @@ public class viewServidor extends javax.swing.JFrame {
         descricaoTexto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(400, 300));
         getContentPane().setLayout(null);
 
         botaoAdicionar.setText("Adicionar");
@@ -64,31 +65,31 @@ public class viewServidor extends javax.swing.JFrame {
 
         hora.setText("0");
         getContentPane().add(hora);
-        hora.setBounds(160, 50, 70, 20);
+        hora.setBounds(160, 50, 70, 30);
 
         minuto.setText("0");
         getContentPane().add(minuto);
-        minuto.setBounds(160, 70, 70, 20);
+        minuto.setBounds(160, 90, 70, 30);
 
         segundo.setText("0");
         getContentPane().add(segundo);
-        segundo.setBounds(160, 90, 70, 20);
+        segundo.setBounds(160, 130, 70, 30);
 
         jLabel1.setText("Hora");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(110, 50, 23, 14);
+        jLabel1.setBounds(100, 60, 40, 14);
 
         jLabel2.setText("Minuto");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(110, 70, 32, 14);
+        jLabel2.setBounds(100, 100, 60, 14);
 
         jLabel3.setText("Segundo");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(110, 90, 50, 14);
+        jLabel3.setBounds(100, 140, 70, 14);
 
         labelBanco.setText("Numero de Alertas no Servidor: 0");
         getContentPane().add(labelBanco);
-        labelBanco.setBounds(140, 140, 260, 14);
+        labelBanco.setBounds(140, 170, 260, 14);
 
         Status.setText("Offline");
         getContentPane().add(Status);
@@ -98,9 +99,9 @@ public class viewServidor extends javax.swing.JFrame {
         getContentPane().add(descricao);
         descricao.setBounds(90, 10, 70, 14);
 
-        descricaoTexto.setText("jTextField1");
+        descricaoTexto.setText("Insira sua mensagem aqui");
         getContentPane().add(descricaoTexto);
-        descricaoTexto.setBounds(160, 10, 210, 20);
+        descricaoTexto.setBounds(160, 10, 210, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

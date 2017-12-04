@@ -6,7 +6,10 @@
 package servidor;
 
 // Final para não ser possivel corromper 
-public final class ServerData {
+import java.io.Serializable;
+
+public final class ServerData implements Serializable {
+
     long tempoAtual;
     long tempoFinal;
     String descricao;
@@ -28,6 +31,5 @@ public final class ServerData {
     public long getTempoFinal() {
         return tempoFinal;
     }
-    
-    
+
 }

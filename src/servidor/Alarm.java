@@ -6,15 +6,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Alarm extends UnicastRemoteObject implements AlarmInterface {
-    
-    ArrayList<String> arrayList = new ArrayList<String>();
-    
-    public Alarm() throws RemoteException {
+
+    AlarmServer as;
+
+    public Alarm(AlarmServer as) throws RemoteException {
+        this.as = as;
     }
 
     @Override
     public Collection getDescricao() throws RemoteException {
-        return arrayList ;
+        return as.getDescricao();
     }
 
 }

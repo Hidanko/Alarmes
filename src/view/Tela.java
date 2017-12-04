@@ -211,6 +211,12 @@ public class Tela extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void agendaTimer()
+    {
+        
+    }
+    
     private void buttonAdicionarTempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarTempoActionPerformed
         // Enviar valores para o método "adicionarTempo" em vez de adicionar aqui
         // Para só ter que mexer em um lugar durante a manutenção do codigo
@@ -250,15 +256,15 @@ public class Tela extends javax.swing.JFrame {
 
     private void botaoPuxarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPuxarActionPerformed
         try {
-            ArrayList<ServerData> temp = (ArrayList<ServerData>) cliente.request();
+            ArrayList<ServerData> temp;
+            temp = (ArrayList<ServerData>) cliente.request();
             System.out.println("Numero de valores recebidos:"+temp.size());
             for (ServerData serverData : temp) {
                 adicionarTempo(serverData);
-                
-                
-                
+
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
         
     }//GEN-LAST:event_botaoPuxarActionPerformed
